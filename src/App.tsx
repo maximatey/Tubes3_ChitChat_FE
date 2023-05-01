@@ -50,13 +50,18 @@ function App() {
           >
             + New Chat
           </button>
-          <h2 style={{ marginBottom: "1rem", marginTop: "0.5rem" }}>
+          <h2
+            style={{ marginBottom: "1rem", marginTop: "0.5rem", height: "3%" }}
+          >
             Chat History
           </h2>
           <div className="chat-history-list">
             <ChatHistory history={history} onSelectItem={handleSelectChat} />
           </div>
-          <div className="align-self-end position-relative ">
+          <div
+            className="position-absolute bottom-0"
+            style={{ marginBottom: "5px", width: "20%", marginLeft: "2%" }}
+          >
             <ToggleButton onToggle={handleToggle} />
           </div>
         </div>

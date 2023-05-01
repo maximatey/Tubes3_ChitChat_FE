@@ -27,12 +27,12 @@
 
 /* Make the chat history list fill the available height */
 .chat-history-list {
-  height: 87%;
+  height: 83%;
   overflow-y: auto;
 }
 
 #app-root {
-  background-color: #383838;
+  background-color: #171c30;
 }
 
 html, body {
@@ -62,7 +62,7 @@ html, body {
 }
 
 #chathistory-root:hover {
-  background-color: rgb(72, 72, 72);
+  background-color: #131727;
 }
 
 #selected-root {
@@ -73,7 +73,7 @@ html, body {
 }
 
 #chatbox {
-  background-color: #6c727b;
+  background-color: #4d5f6d;
 }
 
 .newchatbutton {
@@ -100,7 +100,7 @@ html, body {
 }
 
 .newchatbutton:hover {
-  background-color: rgb(72, 72, 72);
+  background-color: #131727;
 }
 
 .chat-input {
@@ -148,10 +148,13 @@ html, body {
 }
 
 #chatbox-style {
-  background-color: #2a2a2a;
+  background-color: #8da6b6;
   border-color: transparent;
-  color: #aca6a6;
+  color: black;
   border-radius: 10px 0px 0px 10px;
+}
+#chatbox-style::placeholder {
+  color: black;
 }
 
 .chat-input {
@@ -171,7 +174,7 @@ html, body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-color: #414441;
+  background-color: #171c30;
   border: 1px solid transparent;
   padding: 0.5rem 1rem;
   font-size: 1.5rem;
@@ -188,7 +191,7 @@ html, body {
 }
 
 #list-group-item-received {
-  background-color: #131614;
+  background-color: #171c30;
   color: #ffffff;
   font-size: 20px;
   border-radius: 0%;
@@ -200,7 +203,7 @@ html, body {
 }
 
 #list-group-item-sent {
-  background-color: #5b6065;
+  background-color: #110d42;
   color: #ffffff;
   border-radius: 0%;
   font-size: 20px;
@@ -209,6 +212,7 @@ html, body {
   margin-right: 10%;
   text-align: right;
   border-radius: 10px;
+  /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
 }
 
 .chatlog-container {
