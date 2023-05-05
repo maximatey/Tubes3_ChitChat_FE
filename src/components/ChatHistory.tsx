@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { History } from "../App";
 
 interface ChatHistory {
-  history: string[];
-  onSelectItem: (item: string) => void;
+  history: History[];
+  onSelectItem: (item: History) => void;
 }
 function ChatHistory({ history, onSelectItem }: ChatHistory) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -22,7 +23,7 @@ function ChatHistory({ history, onSelectItem }: ChatHistory) {
             className="list-group-item list-item border-0"
             style={{ wordBreak: "break-word" }}
           >
-            {selectedIndex === index ? "Hi there" : chat}
+            {selectedIndex === index ? "Hi there" : chat[1]}
           </li>
         ))}
       </ul>

@@ -2,32 +2,50 @@ import ChatHistory from "./components/ChatHistory";
 import ChatBox from "./components/ChatBox";
 import ToggleButton from "./components/ToggleButton";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChatLog from "./components/ChatLog";
+import axios from "axios";
+
+export type History = [number, string];
+
+export type ResponseType = {
+  his: History[];
+  logs: string[];
+};
 
 function App() {
-  const [history, setHistory] = useState(["la", "li", "lu", "le", "lo"]);
-  const [chatlog, setLog] = useState([]);
-  const [toggle, setToggle] = useState("");
+  const [history, setHistory] = useState<History[]>([]);
+  const [chatlog, setLog] = useState<string[]>([]);
+  const [currToggle, setToggle] = useState("KMP");
+  useEffect(() => {
+    const url = "";
+    axios.get(url).then((response) => {
+      setHistory(response.data.his);
+      setLog(response.data.logs);
+    });
+  });
 
-  const handleSelectChat = (item: string) => {
+  const handleSelectChat = (item: History) => {
     console.log(item);
+    // Handle pemilihan chat disini, bakal kekirim ke be
   };
 
   const handleNewChat = () => {
-    const newHistory = ["New Chat", ...history];
-    setHistory(newHistory);
+    // const newHistory = [["New Chat", 9], ...history];
+    // setHistory(newHistory);
+    // Handle new chat history ke be disini
   };
 
   const handleSentChat = (chat: string) => {
-    const newLog = [...chatlog, chat, "Maaf fitur ngejawabnya belom jadi"];
-    setLog(newLog);
+    // const newLog = [...chatlog, chat, "Maaf fitur ngejawabnya belom jadi"];
+    // setLog(newLog);
     console.log(chat);
+    //handle kirim query ke be
   };
 
   const handleToggle = (toggle: string) => {
     setToggle(toggle);
-    console.log(toggle);
+    console.log(currToggle);
   };
 
   return (

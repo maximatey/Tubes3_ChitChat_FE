@@ -5,7 +5,7 @@ interface ToggleButton {
 }
 
 function ToggleButton({ onToggle }: ToggleButton) {
-  const [toggled, setToggled] = useState("");
+  const [toggled, setToggled] = useState("KMP");
 
   return (
     <div className="btn-group toggle-style">
