@@ -2,7 +2,7 @@ import ChatHistory from "./components/ChatHistory";
 import ChatBox from "./components/ChatBox";
 import ToggleButton from "./components/ToggleButton";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import ChatLog from "./components/ChatLog";
 import axios from "axios";
 
@@ -17,26 +17,66 @@ function App() {
   const [history, setHistory] = useState<History[]>([]);
   const [chatlog, setLog] = useState<string[]>([]);
   const [currToggle, setToggle] = useState("KMP");
+  const [currHistID, setHistID] = useState(10000000);
+  const [currMessage, setMessage] = useState("");
   useEffect(() => {
     async function fetchData() {
       // const response = await fetch("http://localhost:5000/chat");
       // const data = await response.json();
       // console.log(data);
       let hist_identify = 10000000;
-      axios
-    .post("http://localhost:5000/chat", { hist_ID: hist_identify })
+//       axios
+//     .post("http://localhost:5000/history", { hist_ID: hist_identify })
+//     .then((response) => {
+//       console.log(response.data);
+//       // Lakukan sesuatu dengan data response
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//       // Lakukan sesuatu dengan error
+//       });
+//     }
+    axios.get('http://localhost:5000/history')
+      .then(response => {
+        console.log(response.data);
+        setHistory(response.data);
+        setHistID(response.data[0][0]);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }
+
+    axios.post("http://localhost:5000/chat/:" + currHistID, { message: "Hello" })
     .then((response) => {
-      console.log(response.data);
-      // Lakukan sesuatu dengan data response
+        console.log(response.data);
+        setLog(response.data);
+        // Do something with the response
     })
     .catch((error) => {
-      console.error(error);
-      // Lakukan sesuatu dengan error
-      });
-    }
+        console.error(error);
+        // Handle the error
+    });
   
     fetchData();
   }, []);
+
+  useEffect(() => {
+    async function fetchData2() {
+     
+    axios.post("http://localhost:5000/services/", { hist_ID: currHistID, userInput: currMessage, algorithm: currToggle })
+    .then((response) => {
+        console.log(response.data);
+        setLog(response.data);
+        // Do something with the response
+    })
+    .catch((error) => {
+        console.error(error);
+        // Handle the error
+    });
+  
+    fetchData2();
+  }}, [currMessage]);
 
   const handleSelectChat = (item: History) => {
     console.log(item);
@@ -53,6 +93,8 @@ function App() {
     // const newLog = [...chatlog, chat, "Maaf fitur ngejawabnya belom jadi"];
     // setLog(newLog);
     console.log(chat);
+    setMessage(chat);
+    console.log(currMessage);
     //handle kirim query ke be
   };
 

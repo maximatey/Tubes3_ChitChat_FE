@@ -23,7 +23,7 @@ function ChatHistory({ history, onSelectItem }: ChatHistory) {
             className="list-group-item list-item border-0"
             style={{ wordBreak: "break-word" }}
           >
-            {selectedIndex === index ? "Hi there" : chat[1]}
+            {chat[1]}
           </li>
         ))}
       </ul>
