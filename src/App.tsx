@@ -18,12 +18,14 @@ function App() {
   const [chatlog, setLog] = useState<string[]>([]);
   const [currToggle, setToggle] = useState("KMP");
   useEffect(() => {
-    const url = "";
-    axios.get(url).then((response) => {
-      setHistory(response.data.his);
-      setLog(response.data.logs);
-    });
-  });
+    async function fetchData() {
+      const response = await fetch("http://localhost:5000/chat");
+      const data = await response.json();
+      console.log(data);
+    }
+  
+    fetchData();
+  }, []);
 
   const handleSelectChat = (item: History) => {
     console.log(item);
