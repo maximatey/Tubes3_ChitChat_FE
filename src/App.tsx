@@ -19,9 +19,20 @@ function App() {
   const [currToggle, setToggle] = useState("KMP");
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:5000/chat");
-      const data = await response.json();
-      console.log(data);
+      // const response = await fetch("http://localhost:5000/chat");
+      // const data = await response.json();
+      // console.log(data);
+      let hist_identify = 10000000;
+      axios
+    .post("http://localhost:5000/chat", { hist_ID: hist_identify })
+    .then((response) => {
+      console.log(response.data);
+      // Lakukan sesuatu dengan data response
+    })
+    .catch((error) => {
+      console.error(error);
+      // Lakukan sesuatu dengan error
+      });
     }
   
     fetchData();
